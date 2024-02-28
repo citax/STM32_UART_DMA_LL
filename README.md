@@ -34,6 +34,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 1. `Pinout & Configuration` başlığı altında bulunan `Connectivity` sekmesinde bulunan `USART2` hattı `Asynchronous` olarak ayarlanır.
 
 2. USART2 konfigürasyonları aşağıdaki resimde belirtildiği gibi yapılmıştır. Projenize göre değiştirilebilir.
+
 <center>
 
 ![alt text](image.png)
@@ -41,15 +42,22 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 </center>
 
 3. `DMA Settings` sekmesinden `ADD` ile Rx ve TX için DMA açılması gerekmektedir. Burada DMA'nın yönü, önceliği ve yayın kanallarının ayarları yapılmaktadır. 
+
 <center>
 
 ![alt text](image-1.png)
 
 </center>
 
-4. Kod derlenir ve artık `.ioc` dosyası ile herhangi bir işlem yapılmayacaktır.
+4. `.ioc` dosyasında varsayılan kütüphane HAL kütüphanesidir ve kod derlenince HAL dosyalarını projeye eklecektir. LL'nin HAL yerine kullanılması için `Project Manager`, `Advanced Settings` sekmesinden HAL seçenekleri LL ile değiştirilmelidir. 
+<center>
 
-5. `main.c` dosyasında `MX_USART2_UART_Init()` fonksiyonu UART ve UART için DMA konfigürasyonlarının yapıldığı fonksiyondur. Bu fonksiyon CubeIDE tarafından kod derlemesi yapıldığı zaman kendiliğinden oluşturulur ve `.ioc` dosyasında yapılmış ayarlara göre kodlar oluşturulur. 
+![alt text](image-3.png)
+
+</center>
+5. Kod derlenir ve artık `.ioc` dosyası ile herhangi bir işlem yapılmayacaktır.
+
+6. `main.c` dosyasında `MX_USART2_UART_Init()` fonksiyonu UART ve UART için DMA konfigürasyonlarının yapıldığı fonksiyondur. Bu fonksiyon CubeIDE tarafından kod derlemesi yapıldığı zaman kendiliğinden oluşturulur ve `.ioc` dosyasında yapılmış ayarlara göre kodlar oluşturulur. 
 
 >Bu aşamalarda yazılacak configürasyon kodları hali hazırda CubeIDE tarfından yapılmış olabilir. İsteğe bağlı olarak kodlar kısaltılabilir ama önerilmez. Bu örnekte kritik ayarlamaların yazılımcı tarafından tekrar yapılması önerilir.
 --------------------
@@ -136,7 +144,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 	    else {
 
 	    }
-        
+
 > ENG
 
 This repository contains stm32 uart communication with dma and written with LL library
