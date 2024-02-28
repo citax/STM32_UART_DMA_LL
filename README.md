@@ -35,11 +35,11 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 
 2. USART2 konfigürasyonları aşağıdaki resimde belirtildiği gibi yapılmıştır. Projenize göre değiştirilebilir.
 
-<center>
+<div>
 
 ![alt text](image.png)
 
-</center>
+</div>
 
 3. `DMA Settings` sekmesinden `ADD` ile Rx ve TX için DMA açılması gerekmektedir. Burada DMA'nın yönü, önceliği ve yayın kanallarının ayarları yapılmaktadır. 
 
