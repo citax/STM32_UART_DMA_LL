@@ -90,21 +90,21 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 * `LL_DMA_ConfigTransfer()` bu fonksiyon ile DMA Transfer konfigürasyonları yapılır. Fonksiyon isterleri `void LL_DMA_ConfigTransfer(DMA_TypeDef *DMAx, uint32_t Stream, uint32_t Configuration)` şeklindedir. Ancak `|` işareti ile daha fazla konfigürasyon yapmamıza olanak tanır. Bu konfigürasyonlar hali hazırda CubeIDE tarafından yapılmış olabilir. Örnekte yapılan konfigürasyon şu şekildedir: 
 
         LL_DMA_ConfigTransfer(DMA1, LL_DMA_STREAM_5,
-		  	  	     LL_DMA_DIRECTION_PERIPH_TO_MEMORY	|
-  		  	  	  	 LL_DMA_PRIORITY_HIGH			  	|
-  						 LL_DMA_MODE_NORMAL					|
-  						 LL_DMA_PERIPH_NOINCREMENT			|
-  						 LL_DMA_MEMORY_INCREMENT			|
-  						 LL_DMA_PDATAALIGN_BYTE				|
-  						 LL_DMA_MDATAALIGN_BYTE				);`
+			      LL_DMA_DIRECTION_PERIPH_TO_MEMORY		|
+  			      LL_DMA_PRIORITY_HIGH		  	|
+		              LL_DMA_MODE_NORMAL			|
+		              LL_DMA_PERIPH_NOINCREMENT			|
+  			      LL_DMA_MEMORY_INCREMENT			|
+  			      LL_DMA_PDATAALIGN_BYTE			|
+  			      LL_DMA_MDATAALIGN_BYTE			);`
 
 * `LL_DMA_ConfigAddresses()` kaynak ve hedef adresi belirler. Örnekte yapılan konfigürasyon şu şekildedir:
 
         LL_DMA_ConfigAddresses(DMA1,
-  		  	  	             LL_DMA_STREAM_5,
-						         LL_USART_DMA_GetRegAddr(USART2) ,
-  		  	  	  	  	     (uint32_t)rx_buffer,
-						         LL_DMA_DIRECTION_PERIPH_TO_MEMORY);
+  			       LL_DMA_STREAM_5,
+			       LL_USART_DMA_GetRegAddr(USART2) ,
+  		  	       (uint32_t)rx_buffer,
+			       LL_DMA_DIRECTION_PERIPH_TO_MEMORY);
 
 * `LL_DMA_SetDataLength()` transfer edilen datanın büyüklüğü belirlenmelidir. Örnekte yapılan konfigürasyon şu şekildedir: 
     
