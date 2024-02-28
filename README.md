@@ -55,6 +55,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 ![alt text](image-3.png)
 
 </center>
+
 5. Kod derlenir ve artık `.ioc` dosyası ile herhangi bir işlem yapılmayacaktır.
 
 6. `main.c` dosyasında `MX_USART2_UART_Init()` fonksiyonu UART ve UART için DMA konfigürasyonlarının yapıldığı fonksiyondur. Bu fonksiyon CubeIDE tarafından kod derlemesi yapıldığı zaman kendiliğinden oluşturulur ve `.ioc` dosyasında yapılmış ayarlara göre kodlar oluşturulur. 
