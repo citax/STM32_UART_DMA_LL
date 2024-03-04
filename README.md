@@ -4,6 +4,41 @@
 
 Bu kod deposu UART haberleşme protokolü (DMA üzerinden) LL kütüphanesi ile nasıl haberleşme yapılacağını içermektedir. Rx ve Tx haberleşmenin örnekleri aynı proje içerisinde verilmiştir. 
 
+
+## Uart_DMA_LL
+
+Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane oluşturulmuştur. Kütüphanenin [header](https://github.com/citax/STM32_UART_DMA_LL/blob/main/Core/Inc/LL_UART_DMA.h) ve [source](https://github.com/citax/STM32_UART_DMA_LL/blob/main/Core/Src/LL_UART_DMA.c) dosyalarına bu bağlantılardan ulaşılabilir. Rx fonksiyonları aşağıda verildiği gibidir:
+
+1. `void LL_UART_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t DstAddress[], uint8_t Rx_Buffer_Size);`
+
+		Bu fonksiyon Uart Rx konfigürasyonları için kullanılmaktadır. Girdi olarak aldığı argümanlar:
+
+		1. USARTx
+		2. DMAx
+		3. Periphs
+		4. Stream
+		5. IRQn
+		6. DstAddress[]
+		7. Rx_Buffer_Size
+
+2. ` void LL_UART_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
+
+		Bu fonksiyon Uart Rx'nin başlatılması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
+
+		1. USARTx
+		2. DMAx
+		3. Stream
+
+3. `void LL_UART_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
+
+		Bu fonksiyon Uart Rx'nin durdurulması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
+
+		1. USARTx
+		2. DMAx
+		3. Stream
+
+-----------------
+
 * Örnek kod STM32 [NUCLEO-F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  kartı üzerinde yazılmıştır.
 
 * LL kütüphanesi ile yazılmış STM32'nin kendi örnek kodları baz alınmıştır.
