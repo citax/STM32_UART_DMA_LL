@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "LL_UART_DMA.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +31,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define Rx_Buffer_Size 30
 
 /* USER CODE END PD */
 
@@ -46,19 +46,19 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
 /* USER CODE BEGIN PV */
 
-const uint8_t	tx_buffer[] 	= "Hello from STM32\n\r fuck the low level coding\n\r";
-uint8_t	tx_data_size			= sizeof(tx_buffer);
-volatile uint8_t tx_cmplt 		= 0;
+const uint8_t	Tx_Buffer[] 	= "Hello from STM32\n\r low level coding\n\r";
+uint8_t	Tx_Data_Size			= sizeof(Tx_Buffer);
+volatile uint8_t Tx_Cmplt 		= 0;
 
 
-const uint8_t	expected_string[] 	= "AGREED";
-uint8_t expected_string_size		= sizeof(expected_string) -1;
+//const uint8_t	expected_string[] 	= "AGREED";
+//uint8_t expected_string_size		= sizeof(expected_string) -1;
 
-uint8_t	rx_buffer [20];
-volatile uint8_t rx_cmplt = 0;
+uint8_t	Rx_Buffer [Rx_Buffer_Size];
+volatile uint8_t Rx_Cmplt = 0;
 
-uint8_t tx_error;
-uint8_t rx_error;
+uint8_t Tx_Error;
+uint8_t Rx_Error;
 
 /* USER CODE END PV */
 
@@ -111,7 +111,8 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  start_transfer();
+  LL_UART_RX_Config(USART2, DMA1, LL_AHB1_GRP1_PERIPH_DMA1, LL_DMA_STREAM_5, DMA1_Stream5_IRQn, Rx_Buffer, sizeof(Rx_Buffer));
+  LL_UART_RX_Start(USART2, DMA1, LL_DMA_STREAM_5);
 
   //wait_txrx_cmplt();
   /* USER CODE END 2 */
@@ -257,14 +258,12 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE BEGIN USART2_Init 1 */
 
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);
-
   /*ENABLE DMA NVIC PRIOTIRY*/
-  NVIC_SetPriority(DMA1_Stream5_IRQn, 0);
+
   NVIC_SetPriority(DMA1_Stream6_IRQn, 0);
 
   /*ENABLE DMA NVIC IRQN*/
-  NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+
   NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 
   /*CONFIGURE DMA TRANSFER*/
@@ -282,34 +281,14 @@ static void MX_USART2_UART_Init(void)
   LL_DMA_ConfigAddresses(DMA1,
 		  	  	  	  	 LL_DMA_STREAM_6,
 						 LL_USART_DMA_GetRegAddr(USART2) ,
-		  	  	  	  	 (uint32_t)tx_buffer,
+		  	  	  	  	 (uint32_t)Tx_Buffer,
 						 LL_DMA_DIRECTION_MEMORY_TO_PERIPH);
 
   /* Set data lenght */
 
-  LL_DMA_SetDataLength(DMA1, LL_DMA_STREAM_6, tx_data_size);
+  LL_DMA_SetDataLength(DMA1, LL_DMA_STREAM_6, Tx_Data_Size);
 
 
-  // rx config
-  LL_DMA_ConfigTransfer(DMA1, LL_DMA_STREAM_5,
-		  	  	  	  	 LL_DMA_DIRECTION_PERIPH_TO_MEMORY	|
-  		  	  	  	  	 LL_DMA_PRIORITY_HIGH			  	|
-  						 LL_DMA_MODE_NORMAL					|
-  						 LL_DMA_PERIPH_NOINCREMENT			|
-  						 LL_DMA_MEMORY_INCREMENT			|
-  						 LL_DMA_PDATAALIGN_BYTE				|
-  						 LL_DMA_MDATAALIGN_BYTE				);
-
-  LL_DMA_ConfigAddresses(DMA1,
-  		  	  	  	  	 LL_DMA_STREAM_5,
-						 LL_USART_DMA_GetRegAddr(USART2) ,
-  		  	  	  	  	 (uint32_t)rx_buffer,
-						 LL_DMA_DIRECTION_PERIPH_TO_MEMORY);
-
-  LL_DMA_SetDataLength(DMA1, LL_DMA_STREAM_5, sizeof(rx_buffer));
-
-  LL_DMA_EnableIT_TC(DMA1, LL_DMA_STREAM_5);
-  LL_DMA_EnableIT_TE(DMA1, LL_DMA_STREAM_5);
   LL_DMA_EnableIT_TC(DMA1, LL_DMA_STREAM_6);
   LL_DMA_EnableIT_TE(DMA1, LL_DMA_STREAM_6);
 
@@ -506,23 +485,6 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-void wait_txrx_cmplt(void) {
-
-	while(tx_cmplt == 0) {
-
-	}
-
-	LL_DMA_DisableStream(DMA1, LL_DMA_STREAM_6);
-
-	while(rx_cmplt == 0) {
-
-
-	}
-
-	LL_DMA_DisableStream(DMA1, LL_DMA_STREAM_5);
-
-}
-
 void start_transfer(void){
 
 	LL_USART_EnableDMAReq_RX(USART2);
@@ -533,15 +495,13 @@ void start_transfer(void){
 
 }
 
-
-
-
 /* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
   */
+
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */

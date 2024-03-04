@@ -51,10 +51,10 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-extern volatile uint8_t rx_cmplt;
-extern volatile uint8_t tx_cmplt;
-extern uint8_t tx_error;
-extern uint8_t rx_error;
+extern volatile uint8_t Rx_Cmplt;
+extern volatile uint8_t Tx_Cmplt;
+extern uint8_t Tx_Error;
+extern uint8_t Rx_Error;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -67,7 +67,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 void start_transfer(void);
-void wait_txrx_cmplt(void);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

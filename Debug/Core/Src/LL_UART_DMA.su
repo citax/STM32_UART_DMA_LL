@@ -1,0 +1,16 @@
+../Drivers/CMSIS/Include/core_cm4.h:1684:22:__NVIC_EnableIRQ	16	static,ignoring_inline_asm
+../Drivers/CMSIS/Include/core_cm4.h:1814:22:__NVIC_SetPriority	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:494:22:LL_DMA_EnableStream	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:514:22:LL_DMA_DisableStream	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:569:22:LL_DMA_ConfigTransfer	24	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:968:22:LL_DMA_SetDataLength	24	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:1402:22:LL_DMA_ConfigAddresses	24	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:2566:22:LL_DMA_EnableIT_TE	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:2586:22:LL_DMA_EnableIT_TC	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h:409:22:LL_AHB1_GRP1_EnableClock	24	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2316:22:LL_USART_EnableDMAReq_RX	40	static,ignoring_inline_asm
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2327:22:LL_USART_DisableDMAReq_RX	40	static,ignoring_inline_asm
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2383:26:LL_USART_DMA_GetRegAddr	16	static
+../Core/Src/LL_UART_DMA.c:27:6:LL_UART_RX_Config	32	static
+../Core/Src/LL_UART_DMA.c:71:6:LL_UART_RX_Start	24	static
+../Core/Src/LL_UART_DMA.c:85:6:LL_UART_RX_Stop	24	static

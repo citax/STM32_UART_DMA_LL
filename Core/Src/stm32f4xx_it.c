@@ -208,14 +208,13 @@ void DMA1_Stream5_IRQHandler(void)
 
 			LL_DMA_ClearFlag_TC5(DMA1);
 
-			rx_cmplt = 1;
+			Rx_Cmplt = 1;
 	}
 
 	else if(LL_DMA_IsActiveFlag_TE5(DMA1)){
 
 			LL_DMA_ClearFlag_TE5(DMA1);
-			rx_error = 1;
-
+			Rx_Error = 1;
 	}
 
 	else {
@@ -238,7 +237,7 @@ void DMA1_Stream6_IRQHandler(void)
 
 		LL_DMA_ClearFlag_TC6(DMA1);
 
-		tx_cmplt = 1;
+		Tx_Cmplt = 1;
 
 	}
 
@@ -246,7 +245,7 @@ void DMA1_Stream6_IRQHandler(void)
 
 			LL_DMA_ClearFlag_TE6(DMA1);
 
-		tx_error = 1;
+		Tx_Error = 1;
 	}
 
 	else{
