@@ -7,7 +7,7 @@ Bu kod deposu UART haberleşme protokolü (DMA üzerinden) LL kütüphanesi ile 
 
 ## Uart_DMA_LL
 
-Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane oluşturulmuştur. Kütüphanenin [header](https://github.com/citax/STM32_UART_DMA_LL/blob/main/Core/Inc/LL_UART_DMA.h) ve [source](https://github.com/citax/STM32_UART_DMA_LL/blob/main/Core/Src/LL_UART_DMA.c) dosyalarına bu bağlantılardan ulaşılabilir. Rx fonksiyonları aşağıda verildiği gibidir:
+Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane oluşturulmuştur. Kütüphanenin [header](https://github.com/citax/STM32_UART_DMA_LL/blob/main/STM_Project/Core/Inc/LL_UART_DMA.h) ve [source](https://github.com/citax/STM32_UART_DMA_LL/blob/main/STM_Project/Core/Src/LL_UART_DMA.c) dosyalarına bu bağlantılardan ulaşılabilir. Rx fonksiyonları aşağıda verildiği gibidir:
 
 1. `void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t DstAddress[], uint8_t Rx_Buffer_Size);`
 
@@ -77,7 +77,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 
 <center>
 
-![alt text](image.png)
+![alt text](Images/image.png)
 
 </center>
 
@@ -85,14 +85,14 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 
 <center>
 
-![alt text](image-1.png)
+![alt text](Images/image-1.png)
 
 </center>
 
 4. `.ioc` dosyasında varsayılan kütüphane HAL kütüphanesidir ve kod derlenince HAL dosyalarını projeye eklecektir. LL'nin HAL yerine kullanılması için `Project Manager`, `Advanced Settings` sekmesinden HAL seçenekleri LL ile değiştirilmelidir. 
 <center>
 
-![alt text](image-3.png)
+![alt text](Images/image-3.png)
 
 </center>
 
@@ -123,7 +123,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 
 <center>
 
-![alt text](image-2.png)
+![alt text](Images/image-2.png)
 
 </center>
 
