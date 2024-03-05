@@ -55,7 +55,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 
 * Normalde NUCLEO ve DISCOVERY geliştirme kartları özelinde herhangi bir USB-TTL kullanmadan USB kablosu üzerinden USART2 hattı ile haberleşme yapılabilmektedir. Ancak bu özellikler kartın üzerindeki jumperlar ile ayarlanmaktadır. Bu örnekte USB-TTL aracılığı ile haberleşme yapılmıştır ve haberleşmenin bu sayede daha sağlıklı olduğu görülmüştür. Hata yaşandığında donanımdan kaynaklı hataların önüne geçmek için USB-TTL kullanımı tavsiye edilir. 
 
-<center>
+<p align="center">
 
 | USB-TLL       | <====>        | NUCLEO|
 | ------------- |:-------------:| -----:|
@@ -63,7 +63,8 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 | RX     | <====>      |   TX (PA2)  |
 | TX | <====>     |    RX (PA3)|
 
-</center>
+</p>
+
 
 * Tera Term, Hercules, PuTTY, RealTerm gibi bir çok terminal emülatörü kullanılabilir. USB-TTL portu, UART haberleşme hızı (Baud Rate) ayarları doğru yapılmalıdır. Örnekte haberleşme hızı `115200` olarak kullanılmaktadır. 
 
@@ -75,26 +76,23 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 
 2. USART2 konfigürasyonları aşağıdaki resimde belirtildiği gibi yapılmıştır. Projenize göre değiştirilebilir.
 
-<center>
+<p align="center">
+  <img width="647" height="283" src="Images/image.png">
+</p>
 
-![alt text](Images/image.png)
-
-</center>
 
 3. `DMA Settings` sekmesinden `ADD` ile Rx ve TX için DMA açılması gerekmektedir. Burada DMA'nın yönü, önceliği ve yayın kanallarının ayarları yapılmaktadır. 
 
-<center>
+<p align="center">
+  <img width="644" height="148" src="Images/image-1.png">
+</p>
 
-![alt text](Images/image-1.png)
-
-</center>
 
 4. `.ioc` dosyasında varsayılan kütüphane HAL kütüphanesidir ve kod derlenince HAL dosyalarını projeye eklecektir. LL'nin HAL yerine kullanılması için `Project Manager`, `Advanced Settings` sekmesinden HAL seçenekleri LL ile değiştirilmelidir. 
-<center>
 
-![alt text](Images/image-3.png)
-
-</center>
+<p align="center">
+  <img width="673" height="172" src="Images/image-3.png">
+</p>
 
 5. Kod derlenir ve artık `.ioc` dosyası ile herhangi bir işlem yapılmayacaktır.
 
@@ -121,11 +119,9 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 
 >Konfigürasyon yapılırken kullanılan `DMA1_Stream5` belirlenirken `DMA1 Request Mapping` kullanılmalıdır. STM32F4xx serisi için `DMA1 Request Mapping` tablosu aşağıda verilmiştir. Belirtilen Channel ve Stream'ler kesişimindeki USART içindir.    
 
-<center>
-
-![alt text](Images/image-2.png)
-
-</center>
+<p align="center">
+  <img width="713" height="314" src="Images/image-2.png">
+</p>
 
 * `LL_DMA_ConfigTransfer()` bu fonksiyon ile DMA Transfer konfigürasyonları yapılır. Fonksiyon isterleri `void LL_DMA_ConfigTransfer(DMA_TypeDef *DMAx, uint32_t Stream, uint32_t Configuration)` şeklindedir. Ancak `|` işareti ile daha fazla konfigürasyon yapmamıza olanak tanır. Bu konfigürasyonlar hali hazırda CubeIDE tarafından yapılmış olabilir. Örnekte yapılan konfigürasyon şu şekildedir: 
 
