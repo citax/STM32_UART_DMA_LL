@@ -31,7 +31,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define Rx_Buffer_Size 30
+
 
 /* USER CODE END PD */
 
@@ -46,6 +46,8 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
 /* USER CODE BEGIN PV */
 
+extern uint8_t	Rx_Buffer[Rx_Buffer_Size];
+
 const uint8_t	Tx_Buffer[] 	= "Hello from STM32\n\r low level coding\n\r";
 uint8_t	Tx_Data_Size			= sizeof(Tx_Buffer);
 volatile uint8_t Tx_Cmplt 		= 0;
@@ -54,11 +56,8 @@ volatile uint8_t Tx_Cmplt 		= 0;
 //const uint8_t	expected_string[] 	= "AGREED";
 //uint8_t expected_string_size		= sizeof(expected_string) -1;
 
-uint8_t	Rx_Buffer [Rx_Buffer_Size];
-volatile uint8_t Rx_Cmplt = 0;
-
 uint8_t Tx_Error;
-uint8_t Rx_Error;
+
 
 /* USER CODE END PV */
 
@@ -111,10 +110,11 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  LL_UART_RX_Config(USART2, DMA1, LL_AHB1_GRP1_PERIPH_DMA1, LL_DMA_STREAM_5, DMA1_Stream5_IRQn, Rx_Buffer, sizeof(Rx_Buffer));
-  LL_UART_RX_Start(USART2, DMA1, LL_DMA_STREAM_5);
 
-  //wait_txrx_cmplt();
+  LL_UART_DMA_RX_Config(USART2, DMA1, LL_AHB1_GRP1_PERIPH_DMA1, LL_DMA_STREAM_5,
+		  DMA1_Stream5_IRQn, Rx_Buffer, sizeof(Rx_Buffer));
+  LL_UART_DMA_RX_Start(USART2, DMA1, LL_DMA_STREAM_5);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

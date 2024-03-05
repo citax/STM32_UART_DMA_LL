@@ -204,22 +204,9 @@ void SysTick_Handler(void)
 void DMA1_Stream5_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
-	if(LL_DMA_IsActiveFlag_TC5(DMA1)){
+	LL_UART_DMA_RX_Interrupt(DMA1);
+	//	LL_UART_DMA_RX_Interrupt(USART2, DMA1);
 
-			LL_DMA_ClearFlag_TC5(DMA1);
-
-			Rx_Cmplt = 1;
-	}
-
-	else if(LL_DMA_IsActiveFlag_TE5(DMA1)){
-
-			LL_DMA_ClearFlag_TE5(DMA1);
-			Rx_Error = 1;
-	}
-
-	else {
-
-	}
   /* USER CODE END DMA1_Stream5_IRQn 0 */
 
   /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */

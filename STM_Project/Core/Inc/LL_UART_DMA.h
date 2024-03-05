@@ -9,7 +9,6 @@
 #ifndef INC_LL_UART_DMA_H_
 #define INC_LL_UART_DMA_H_
 
-
 #include "main.h"
 #include <stdint.h>
 
@@ -17,16 +16,21 @@
 
 
 /********************** Defining Enums and Structs ****************************/
+typedef enum {
+
+	Rx_Buffer_Size = 4
+
+} Buffer_Size_Enum_Typedef;
 
 
 /********************** Defining Function Protypes ****************************/
 
-
-void LL_UART_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs,
+void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs,
 		uint32_t Stream, IRQn_Type IRQn, uint8_t DstAddress[], uint8_t Rx_Buffer_Size);
 
-void LL_UART_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
-void LL_UART_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
+void LL_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
+void LL_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
+void LL_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx);
 
 
 

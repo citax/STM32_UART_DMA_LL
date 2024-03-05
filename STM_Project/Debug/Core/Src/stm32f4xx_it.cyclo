@@ -1,10 +1,6 @@
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:1792:26:LL_DMA_IsActiveFlag_TC5	1
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:1803:26:LL_DMA_IsActiveFlag_TC6	1
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:1880:26:LL_DMA_IsActiveFlag_TE5	1
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:1891:26:LL_DMA_IsActiveFlag_TE6	1
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:2232:22:LL_DMA_ClearFlag_TC5	1
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:2243:22:LL_DMA_ClearFlag_TC6	1
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:2320:22:LL_DMA_ClearFlag_TE5	1
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:2331:22:LL_DMA_ClearFlag_TE6	1
 ../Core/Src/stm32f4xx_it.c:69:6:NMI_Handler	1
 ../Core/Src/stm32f4xx_it.c:84:6:HardFault_Handler	1
@@ -15,6 +11,6 @@
 ../Core/Src/stm32f4xx_it.c:157:6:DebugMon_Handler	1
 ../Core/Src/stm32f4xx_it.c:170:6:PendSV_Handler	1
 ../Core/Src/stm32f4xx_it.c:183:6:SysTick_Handler	1
-../Core/Src/stm32f4xx_it.c:204:6:DMA1_Stream5_IRQHandler	3
-../Core/Src/stm32f4xx_it.c:234:6:DMA1_Stream6_IRQHandler	3
-../Core/Src/stm32f4xx_it.c:265:6:USART2_IRQHandler	1
+../Core/Src/stm32f4xx_it.c:204:6:DMA1_Stream5_IRQHandler	1
+../Core/Src/stm32f4xx_it.c:220:6:DMA1_Stream6_IRQHandler	3
+../Core/Src/stm32f4xx_it.c:251:6:USART2_IRQHandler	1

@@ -46,7 +46,7 @@
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:273:22:LL_GPIO_SetPinMode	48	static,ignoring_inline_asm
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:484:22:LL_GPIO_SetPinPull	48	static,ignoring_inline_asm
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:910:22:LL_GPIO_ResetOutputPin	16	static
-../Core/Src/main.c:85:5:main	24	static
+../Core/Src/main.c:84:5:main	24	static
 ../Core/Src/main.c:135:6:SystemClock_Config	8	static
 ../Core/Src/main.c:188:13:MX_USART2_UART_Init	72	static
 ../Core/Src/main.c:317:13:MX_USART3_UART_Init	64	static
