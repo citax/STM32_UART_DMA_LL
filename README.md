@@ -41,7 +41,15 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 
 		Bu fonksiyon Uart Rx kesmesi içindir. Uart Rx hangi streamde ise o streamin kesme fonksiyonunun içerisinde kullanılmalıdır.
 
+5. `void LL_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream, uint8_t Recieved_Data[], uint8_t Rx_Buffer[])`
 
+		Bu fonksiyon gelen verileri istenen bir buffera çekilmesini sağlar. UART IDLE kesme fonksiyonunun içerisinde kullanılmalıdır. Girdi olarak aldığı argümanlar:
+
+		1. USARTx
+		2. DMAx
+		3. Stream
+		4. Recieved_Data[]
+		5. Rx_Buffer[]
 -----------------
 
 * Örnek kod STM32 [NUCLEO-F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  kartı üzerinde yazılmıştır.

@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_it.h"
+#include "LL_UART_DMA.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -41,7 +42,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+extern uint8_t	Rx_Buffer[Rx_Buffer_Size];
+extern uint8_t Recieved_Data[Rx_Buffer_Size];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -251,7 +253,7 @@ void DMA1_Stream6_IRQHandler(void)
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-
+	LL_UART_DMA_RX_IDLE_Interrupt(USART2, DMA1, LL_DMA_STREAM_5, Recieved_Data, Rx_Buffer);
   /* USER CODE END USART2_IRQn 0 */
   /* USER CODE BEGIN USART2_IRQn 1 */
 
