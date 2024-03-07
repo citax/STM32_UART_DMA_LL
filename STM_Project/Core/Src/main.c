@@ -48,13 +48,10 @@ PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
 extern uint8_t	Rx_Buffer[Rx_Buffer_Size];
 
-const uint8_t	Tx_Buffer[] 	= "Hello from STM32\n\r low level coding\n\r";
+uint8_t	Tx_Buffer[] 	= "Hello from STM32\nlow level coding\n\r";
 uint8_t	Tx_Data_Size			= sizeof(Tx_Buffer);
 volatile uint8_t Tx_Cmplt 		= 0;
 
-
-//const uint8_t	expected_string[] 	= "AGREED";
-//uint8_t expected_string_size		= sizeof(expected_string) -1;
 
 uint8_t Tx_Error;
 
@@ -116,6 +113,11 @@ int main(void)
 		  DMA1_Stream5_IRQn, Rx_Buffer, sizeof(Rx_Buffer));
   LL_UART_DMA_RX_Start(USART2, DMA1, LL_DMA_STREAM_5);
 
+  LL_UART_DMA_TX_Config(USART2, DMA1, LL_AHB1_GRP1_PERIPH_DMA1, LL_DMA_STREAM_6,
+  		  DMA1_Stream6_IRQn, Tx_Buffer, sizeof(Tx_Buffer));
+
+  LL_UART_DMA_TX_Start(USART2, DMA1, LL_DMA_STREAM_6);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -123,7 +125,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  LL_UART_DMA_TX_Start(USART2, DMA1, LL_DMA_STREAM_6);
+	  HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -259,39 +262,6 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE BEGIN USART2_Init 1 */
 
-  /*ENABLE DMA NVIC PRIOTIRY*/
-
-  NVIC_SetPriority(DMA1_Stream6_IRQn, 0);
-
-  /*ENABLE DMA NVIC IRQN*/
-
-  NVIC_EnableIRQ(DMA1_Stream6_IRQn);
-
-  /*CONFIGURE DMA TRANSFER*/
-  LL_DMA_ConfigTransfer(DMA1, LL_DMA_STREAM_6,
-		  	  	  	  	 LL_DMA_DIRECTION_MEMORY_TO_PERIPH	|
-		  	  	  	  	 LL_DMA_PRIORITY_HIGH			  	|
-						 LL_DMA_MODE_NORMAL					|
-						 LL_DMA_PERIPH_NOINCREMENT			|
-						 LL_DMA_MEMORY_INCREMENT			|
-						 LL_DMA_PDATAALIGN_BYTE				|
-						 LL_DMA_MDATAALIGN_BYTE				);
-
-  /*Configure transfer address and direction*/
-
-  LL_DMA_ConfigAddresses(DMA1,
-		  	  	  	  	 LL_DMA_STREAM_6,
-						 LL_USART_DMA_GetRegAddr(USART2) ,
-		  	  	  	  	 (uint32_t)Tx_Buffer,
-						 LL_DMA_DIRECTION_MEMORY_TO_PERIPH);
-
-  /* Set data lenght */
-
-  LL_DMA_SetDataLength(DMA1, LL_DMA_STREAM_6, Tx_Data_Size);
-
-
-  LL_DMA_EnableIT_TC(DMA1, LL_DMA_STREAM_6);
-  LL_DMA_EnableIT_TE(DMA1, LL_DMA_STREAM_6);
 
   /* USER CODE END USART2_Init 1 */
   USART_InitStruct.BaudRate = 115200;
@@ -485,16 +455,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-void start_transfer(void){
-
-	LL_USART_EnableDMAReq_RX(USART2);
-	LL_USART_EnableDMAReq_TX(USART2);
-
-	LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_5);
-	LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_6);
-
-}
 
 /* USER CODE END 4 */
 

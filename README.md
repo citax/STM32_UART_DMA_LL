@@ -37,7 +37,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		2. DMAx
 		3. Stream
 
-4. `void LL_UART_DMA_RX_Interrupt(void);`
+4. `void LL_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx);`
 
 		Bu fonksiyon Uart Rx kesmesi içindir. Uart Rx hangi streamde ise o streamin kesme fonksiyonunun içerisinde kullanılmalıdır.
 
@@ -50,6 +50,38 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		3. Stream
 		4. Recieved_Data[]
 		5. Rx_Buffer[]
+
+6. `LL_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size)`
+
+		Bu fonksiyon Uart Tx konfigürasyonları için kullanılmaktadır. Girdi olarak aldığı argümanlar:
+
+		1. USARTx
+		2. DMAx
+		3. Periphs
+		4. Stream
+		5. IRQn
+		6. SourceAddress[]
+		7. Tx_Buffer_Size
+
+7. ` void LL_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
+
+		Bu fonksiyon Uart Tx'nin başlatılması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
+
+		1. USARTx
+		2. DMAx
+		3. Stream
+
+8. `void LL_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
+
+		Bu fonksiyon Uart Tx'nin durdurulması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
+
+		1. USARTx
+		2. DMAx
+		3. Stream
+
+9. `void LL_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx);`
+
+		Bu fonksiyon Uart Tx kesmesi içindir. Uart Tx hangi streamde ise o streamin kesme fonksiyonunun içerisinde kullanılmalıdır.
 -----------------
 
 * Örnek kod STM32 [NUCLEO-F446ZE](https://www.st.com/en/evaluation-tools/nucleo-f446ze.html)  kartı üzerinde yazılmıştır.

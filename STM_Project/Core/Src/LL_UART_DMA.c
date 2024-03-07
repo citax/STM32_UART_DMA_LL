@@ -74,6 +74,58 @@ void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Pe
 }
 
 /*******************************************************************************
+ * @Function_Name   : LL_UART_DMA_TX_Config
+ * @Function_Input  : USARTx, DMAx, Periphs, Stream, IRQn, DstAddress, Rx_Buffer_Size
+ * @Function_Output : None
+ * @Function_Brief  : Config function for LL Uart Tx. Use this function in the
+ * 					  MX_USART2_UART_Init() or use after UART and DMA Init func.
+ ******************************************************************************/
+
+void LL_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs ,
+		uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size) {
+
+
+	  LL_AHB1_GRP1_EnableClock(Periphs);
+
+	  /*ENABLE DMA NVIC PRIOTIRY*/
+
+	  NVIC_SetPriority(IRQn, 0);
+
+	  /*ENABLE DMA NVIC IRQN*/
+
+	  NVIC_EnableIRQ(IRQn);
+
+	  /*CONFIGURE DMA TRANSFER*/
+	  LL_DMA_ConfigTransfer(DMAx, Stream,
+			  	  	  	  	 LL_DMA_DIRECTION_MEMORY_TO_PERIPH	|
+			  	  	  	  	 LL_DMA_PRIORITY_HIGH			  	|
+							 LL_DMA_MODE_NORMAL					|
+							 LL_DMA_PERIPH_NOINCREMENT			|
+							 LL_DMA_MEMORY_INCREMENT			|
+							 LL_DMA_PDATAALIGN_BYTE				|
+							 LL_DMA_MDATAALIGN_BYTE				);
+
+	  /*Configure transfer address and direction*/
+
+	  LL_DMA_ConfigAddresses(DMAx,
+			  	  	  	  	 Stream,
+							 (uint32_t)SourceAddress,
+							 LL_USART_DMA_GetRegAddr(USARTx) ,
+							 LL_DMA_DIRECTION_MEMORY_TO_PERIPH);
+
+	  /* Set data lenght */
+
+	  LL_DMA_SetDataLength(DMAx, Stream, Tx_Buffer_Size);
+
+
+	  LL_DMA_EnableIT_TC(DMAx, Stream);
+	  LL_DMA_EnableIT_TE(DMAx, Stream);
+	  LL_DMA_DisableIT_HT(DMAx, Stream);
+
+}
+
+
+/*******************************************************************************
  * @Function_Name   : LL_UART_DMA_RX_Start
  * @Function_Input  : USARTx, DMAx, Stream
  * @Function_Output : None
@@ -86,6 +138,21 @@ void LL_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Str
 	LL_DMA_EnableStream(DMAx, Stream);
 
 }
+
+/*******************************************************************************
+ * @Function_Name   : LL_UART_DMA_TX_Start
+ * @Function_Input  : USARTx, DMAx, Stream
+ * @Function_Output : None
+ * @Function_Brief  : Start func. Uart Rx LL
+ ******************************************************************************/
+
+void LL_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream){
+
+	LL_USART_EnableDMAReq_TX(USARTx);
+	LL_DMA_EnableStream(DMAx, Stream);
+
+}
+
 
 /*******************************************************************************
  * @Function_Name   : LL_UART_DMA_RX_Stop
@@ -102,28 +169,71 @@ void LL_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stre
 }
 
 /*******************************************************************************
+ * @Function_Name   : LL_UART_DMA_TX_Stop
+ * @Function_Input  : USARTx, DMAx, Stream
+ * @Function_Output : None
+ * @Function_Brief  : Stop func. Uart Rx LL
+ ******************************************************************************/
+
+void LL_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream) {
+
+	LL_USART_DisableDMAReq_TX(USARTx);
+	LL_DMA_DisableStream(DMAx, Stream);
+
+}
+
+
+/*******************************************************************************
  * @Function_Name   : LL_UART_DMA_RX_Interrupt
  * @Function_Input  : DMAx
  * @Function_Output : None
- * @Function_Brief  : DMA Interrupt func.
+ * @Function_Brief  : DMA RX Interrupt func.
  ******************************************************************************/
 
 void LL_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx){
 
-	if(LL_DMA_IsActiveFlag_TC5(DMAx)){
+	if(LL_DMA_IsActiveFlag_TC5(DMAx)){ // User should change LL_DMA_IsActiveFlag_TCx with the correct stream.
 
 			LL_DMA_ClearFlag_TC5(DMAx);
 
 			Rx_Cmplt = 1;
 	}
 
-	else if(LL_DMA_IsActiveFlag_TE5(DMAx)){
+	else if(LL_DMA_IsActiveFlag_TE5(DMAx)){ // User should change LL_DMA_IsActiveFlag_TEx with the correct stream.
 
 			LL_DMA_ClearFlag_TE5(DMAx);
 			Rx_Error = 1;
 	}
 
 }
+
+/*******************************************************************************
+ * @Function_Name   : LL_UART_DMA_TX_Interrupt
+ * @Function_Input  : DMAx
+ * @Function_Output : None
+ * @Function_Brief  : DMA TX Interrupt func.
+ ******************************************************************************/
+
+void LL_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx){
+
+	if(LL_DMA_IsActiveFlag_TC6(DMAx)){ // The user should change LL_DMA_IsActiveFlag_TCx with the correct stream.
+
+		LL_DMA_ClearFlag_TC6(DMAx);
+
+		Tx_Cmplt = 1;
+
+	}
+
+	else if(LL_DMA_IsActiveFlag_TE6(DMAx)){ // User should change LL_DMA_IsActiveFlag_TEx with the correct stream.
+
+		LL_DMA_ClearFlag_TE6(DMAx);
+
+		Tx_Error = 1;
+	}
+
+}
+
+
 
 /*******************************************************************************
  * @Function_Name   : LL_UART_DMA_RX_IDLE_Interrupt

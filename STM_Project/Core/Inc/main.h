@@ -66,7 +66,6 @@ extern uint8_t Rx_Error;
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void start_transfer(void);
 
 /* USER CODE END EFP */
 
