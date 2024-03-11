@@ -17,8 +17,8 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
 		3. Periphs				>Kullanılacak Periph		Örnek: LL_AHB1_GRP1_PERIPH_DMA1
 		4. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
-		5. IRQn				>Kullanılan IRQn 			Örnek: DMA1_Stream5_IRQn
-		6. DstAddress[]			>DMA Veri Bufferı			Örnek: Rx_Buffer[]
+		5. IRQn				>Kullanılan IRQn 		Örnek: DMA1_Stream5_IRQn
+		6. DstAddress[]			>DMA Veri Bufferı		Örnek: Rx_Buffer[]
 		7. Rx_Buffer_Size			>Veri Buffer Büyüklüğü		Örnek: sizeof(Rx_Buffer)
 
 2. ` void Low_Level_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
@@ -50,7 +50,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		3. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
 		4. Recieved_Data[]			>Veri Kaydedilecek Buffer 	Örnek: Recieved_Data[]
 		5. Rx_Buffer[]				>DMA'dan direkt olarak  	Örnek: Recieved_Data[]
-								 Veri Kaydedilecek Buffer
+							Veri Kaydedilecek Buffer
 
 6. `void Low_Level_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size)`
 
@@ -60,8 +60,8 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
 		3. Periphs				>Kullanılacak Periph		Örnek: LL_AHB1_GRP1_PERIPH_DMA1
 		4. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
-		5. IRQn				>Kullanılan IRQn 			Örnek: DMA1_Stream5_IRQn
-		6. SourceAddress[]			>Yollanacak Veri 			Örnek: Tx_Buffer
+		5. IRQn				>Kullanılan IRQn 		Örnek: DMA1_Stream5_IRQn
+		6. SourceAddress[]			>Yollanacak Veri 		Örnek: Tx_Buffer
 		7. Tx_Buffer_Size			>Veri Buffer Büyüklüğü		Örnek: sizeof(Tx_Buffer)
 
 7. ` void Low_Level_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
