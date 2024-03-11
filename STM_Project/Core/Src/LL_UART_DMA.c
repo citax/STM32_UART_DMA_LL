@@ -247,6 +247,7 @@ void LL_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uin
 
 	if(LL_USART_IsActiveFlag_IDLE(USARTx))
 	{
+
 		for(uint8_t i=0; i<Rx_Buffer_Size; i++) {
 			Recieved_Data[i] = 0;	// Reset to Recieved_Data
 		}
@@ -255,7 +256,8 @@ void LL_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uin
 
 		Pos = Rx_Buffer_Size - LL_DMA_GetDataLength(DMAx, Stream);
 
-		if(LL_DMA_GetDataLength(DMAx, Stream) == Rx_Buffer_Size && Pos == 0 && Old_Pos == 0) { // Data Size = Rx_Buffer_Size
+
+		if(Pos == Old_Pos) { // Data Size = Rx_Buffer_Size
 
 			for(uint8_t i=0; i<Rx_Buffer_Size; i++){
 

@@ -34,4 +34,4 @@
 ../Core/Src/LL_UART_DMA.c:178:6:LL_UART_DMA_TX_Stop	1
 ../Core/Src/LL_UART_DMA.c:193:6:LL_UART_DMA_RX_Interrupt	3
 ../Core/Src/LL_UART_DMA.c:217:6:LL_UART_DMA_TX_Interrupt	3
-../Core/Src/LL_UART_DMA.c:245:6:LL_UART_DMA_RX_IDLE_Interrupt	12
+../Core/Src/LL_UART_DMA.c:245:6:LL_UART_DMA_RX_IDLE_Interrupt	10
