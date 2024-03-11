@@ -152,6 +152,8 @@ void Low_Level_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint3
 
 	LL_USART_EnableDMAReq_TX(USARTx);
 	LL_DMA_EnableStream(DMAx, Stream);
+	LL_DMA_EnableIT_TC(DMAx, Stream);
+	LL_DMA_EnableIT_TE(DMAx, Stream);
 
 }
 
