@@ -1,4 +1,3 @@
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_rcc.h:3549:22:LL_RCC_SetUSBClockSource	1
 ../Core/Src/stm32f4xx_hal_msp.c:64:6:HAL_MspInit	1
-../Core/Src/stm32f4xx_hal_msp.c:86:6:HAL_PCD_MspInit	2
-../Core/Src/stm32f4xx_hal_msp.c:131:6:HAL_PCD_MspDeInit	2
+../Core/Src/stm32f4xx_hal_msp.c:86:6:HAL_PCD_MspInit	3
+../Core/Src/stm32f4xx_hal_msp.c:140:6:HAL_PCD_MspDeInit	2

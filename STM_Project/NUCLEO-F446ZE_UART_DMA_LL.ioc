@@ -26,6 +26,7 @@ Dma.USART2_TX.1.PeriphInc=DMA_PINC_DISABLE
 Dma.USART2_TX.1.Priority=DMA_PRIORITY_HIGH
 Dma.USART2_TX.1.RequestParameters=Instance,Direction,PeriphInc,MemInc,PeriphDataAlignment,MemDataAlignment,Mode,Priority,FIFOMode
 File.Version=6
+GPIO.groupedBy=Group By Peripherals
 KeepUserPlacement=false
 Mcu.CPN=STM32F446ZET6
 Mcu.Family=STM32F4

@@ -9,7 +9,7 @@ Bu kod deposu UART haberleşme protokolü (DMA üzerinden) LL kütüphanesi ile 
 
 Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane oluşturulmuştur. Kütüphanenin [header](https://github.com/citax/STM32_UART_DMA_LL/blob/main/STM_Project/Core/Inc/LL_UART_DMA.h) ve [source](https://github.com/citax/STM32_UART_DMA_LL/blob/main/STM_Project/Core/Src/LL_UART_DMA.c) dosyalarına bu bağlantılardan ulaşılabilir. Rx fonksiyonları aşağıda verildiği gibidir:
 
-1. `void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t DstAddress[], uint8_t Rx_Buffer_Size);`
+1. `void Low_Level_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t DstAddress[], uint8_t Rx_Buffer_Size);`
 
 		Bu fonksiyon Uart Rx konfigürasyonları için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
@@ -21,7 +21,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		6. DstAddress[]
 		7. Rx_Buffer_Size
 
-2. ` void LL_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
+2. ` void Low_Level_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
 
 		Bu fonksiyon Uart Rx'nin başlatılması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
@@ -29,7 +29,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		2. DMAx
 		3. Stream
 
-3. `void LL_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
+3. `void Low_Level_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
 
 		Bu fonksiyon Uart Rx'nin durdurulması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
@@ -37,11 +37,11 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		2. DMAx
 		3. Stream
 
-4. `void LL_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx);`
+4. `void Low_Level_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx);`
 
 		Bu fonksiyon Uart Rx kesmesi içindir. Uart Rx hangi streamde ise o streamin kesme fonksiyonunun içerisinde kullanılmalıdır.
 
-5. `void LL_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream, uint8_t Recieved_Data[], uint8_t Rx_Buffer[])`
+5. `void Low_Level_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream, uint8_t Recieved_Data[], uint8_t Rx_Buffer[])`
 
 		Bu fonksiyon gelen verileri istenen bir buffera çekilmesini sağlar. UART IDLE kesme fonksiyonunun içerisinde kullanılmalıdır. Girdi olarak aldığı argümanlar:
 
@@ -51,7 +51,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		4. Recieved_Data[]
 		5. Rx_Buffer[]
 
-6. `LL_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size)`
+6. `void Low_Level_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size)`
 
 		Bu fonksiyon Uart Tx konfigürasyonları için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
@@ -63,7 +63,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		6. SourceAddress[]
 		7. Tx_Buffer_Size
 
-7. ` void LL_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
+7. ` void Low_Level_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
 
 		Bu fonksiyon Uart Tx'nin başlatılması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
@@ -71,7 +71,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		2. DMAx
 		3. Stream
 
-8. `void LL_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
+8. `void Low_Level_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
 
 		Bu fonksiyon Uart Tx'nin durdurulması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
@@ -79,7 +79,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		2. DMAx
 		3. Stream
 
-9. `void LL_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx);`
+9. `void Low_Level_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx);`
 
 		Bu fonksiyon Uart Tx kesmesi içindir. Uart Tx hangi streamde ise o streamin kesme fonksiyonunun içerisinde kullanılmalıdır.
 -----------------
@@ -131,7 +131,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 4. `.ioc` dosyasında varsayılan kütüphane HAL kütüphanesidir ve kod derlenince HAL dosyalarını projeye eklecektir. LL'nin HAL yerine kullanılması için `Project Manager`, `Advanced Settings` sekmesinden HAL seçenekleri LL ile değiştirilmelidir. 
 
 <p align="center">
-  <img width="673" height="172" src="Images/image-3.png">
+  <img width="673" height="172" src="Images/image-4.png">
 </p>
 
 5. Kod derlenir ve artık `.ioc` dosyası ile herhangi bir işlem yapılmayacaktır.
@@ -196,7 +196,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 
 > `LL_USART_EnableDMAReq_RX()` ve `LL_DMA_EnableStream()` fonksiyonları (Start_DMA gibi) yazılımcı tarafından oluşturulacak tek bir fonksiyon içerisinde kullanılabilir. Yalnızca bu fonksiyon çağırılarak başka bir noktada kapatılan DMA tekrar açılabilir.
 
-* Rx transferi gerçekleştiğinde gelen veri bir bufferın içine kaydedilecektir. Örnekte `uint8_t   rx_buffer[20];` kodu ile bir buffer tanımlanmıştır. 
+* Rx transferi gerçekleştiğinde gelen veri bir bufferın içine kaydedilecektir. Örnekte `uint8_t rx_buffer[20];` kodu ile bir buffer tanımlanmıştır. 
 
 --------
 

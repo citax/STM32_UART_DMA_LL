@@ -18,26 +18,26 @@
 /********************** Defining Enums and Structs ****************************/
 typedef enum {
 
-	Rx_Buffer_Size = 10
+	Rx_Buffer_Size = 100
 
 } Buffer_Size_Enum_Typedef;
 
 
 /********************** Defining Function Protypes ****************************/
 
-void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs,
+void Low_Level_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs,
 		uint32_t Stream, IRQn_Type IRQn, uint8_t DstAddress[], uint8_t Rx_Buffer_Size);
 
-void LL_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs ,
+void Low_Level_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs ,
 		uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size);
 
-void LL_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
-void LL_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
-void LL_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
-void LL_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
-void LL_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx);
-void LL_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx);
-void LL_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream,
+void Low_Level_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
+void Low_Level_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
+void Low_Level_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
+void Low_Level_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);
+void Low_Level_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx);
+void Low_Level_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx);
+void Low_Level_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream,
 		 uint8_t Recieved_Data[], uint8_t Rx_Buffer[]);
 
 

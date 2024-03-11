@@ -22,6 +22,7 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "LL_UART_DMA.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -205,8 +206,8 @@ void SysTick_Handler(void)
 void DMA1_Stream5_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
-	LL_UART_DMA_RX_Interrupt(DMA1);
-
+	Low_Level_UART_DMA_RX_Interrupt(DMA1);
+	Low_Level_UART_DMA_RX_Start(USART2, DMA1, LL_DMA_STREAM_5);
 	//	LL_UART_DMA_RX_Interrupt(USART2, DMA1);
 
   /* USER CODE END DMA1_Stream5_IRQn 0 */
@@ -223,8 +224,7 @@ void DMA1_Stream6_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream6_IRQn 0 */
 
-
-	LL_UART_DMA_TX_Interrupt(DMA1);
+	Low_Level_UART_DMA_TX_Interrupt(DMA1);
 
   /* USER CODE END DMA1_Stream6_IRQn 0 */
 
@@ -239,7 +239,8 @@ void DMA1_Stream6_IRQHandler(void)
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-	LL_UART_DMA_RX_IDLE_Interrupt(USART2, DMA1, LL_DMA_STREAM_5, Recieved_Data, Rx_Buffer);
+	Low_Level_UART_DMA_RX_IDLE_Interrupt(USART2, DMA1, LL_DMA_STREAM_5, Recieved_Data, Rx_Buffer);
+//	LL_UART_DMA_RX_Start(USART2, DMA1, LL_DMA_STREAM_5);
   /* USER CODE END USART2_IRQn 0 */
   /* USER CODE BEGIN USART2_IRQn 1 */
 

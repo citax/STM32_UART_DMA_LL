@@ -31,7 +31,7 @@ uint8_t Pos = 0, Old_Pos = 0;
  * 					  MX_USART2_UART_Init() or use after UART and DMA Init func.
  ******************************************************************************/
 
-void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs ,
+void Low_Level_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs ,
 		uint32_t Stream, IRQn_Type IRQn, uint8_t DstAddress[], uint8_t Rx_Buffer_Size) {
 
 	// Enable DMA Clock.
@@ -47,7 +47,7 @@ void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Pe
 	LL_DMA_ConfigTransfer(	 DMAx, Stream,
 			  	  	  	  	 LL_DMA_DIRECTION_PERIPH_TO_MEMORY	|
 	  		  	  	  	  	 LL_DMA_PRIORITY_HIGH			  	|
-	  						 LL_DMA_MODE_CIRCULAR				|
+	  						 LL_DMA_MODE_NORMAL			  	|
 	  						 LL_DMA_PERIPH_NOINCREMENT			|
 	  						 LL_DMA_MEMORY_INCREMENT			|
 	  						 LL_DMA_PDATAALIGN_BYTE				|
@@ -81,7 +81,7 @@ void LL_UART_DMA_RX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Pe
  * 					  MX_USART2_UART_Init() or use after UART and DMA Init func.
  ******************************************************************************/
 
-void LL_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs ,
+void Low_Level_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs ,
 		uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size) {
 
 
@@ -132,10 +132,12 @@ void LL_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Pe
  * @Function_Brief  : Start func. Uart Rx LL
  ******************************************************************************/
 
-void LL_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream){
+void Low_Level_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream){
 
 	LL_USART_EnableDMAReq_RX(USARTx);
 	LL_DMA_EnableStream(DMAx, Stream);
+	LL_DMA_EnableIT_TC(DMAx, Stream);
+	LL_DMA_EnableIT_TE(DMAx, Stream);
 
 }
 
@@ -146,7 +148,7 @@ void LL_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Str
  * @Function_Brief  : Start func. Uart Rx LL
  ******************************************************************************/
 
-void LL_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream){
+void Low_Level_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream){
 
 	LL_USART_EnableDMAReq_TX(USARTx);
 	LL_DMA_EnableStream(DMAx, Stream);
@@ -161,10 +163,12 @@ void LL_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Str
  * @Function_Brief  : Stop func. Uart Rx LL
  ******************************************************************************/
 
-void LL_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream) {
+void Low_Level_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream) {
 
 	LL_USART_DisableDMAReq_RX(USARTx);
 	LL_DMA_DisableStream(DMAx, Stream);
+	LL_DMA_DisableIT_TC(DMAx, Stream);
+	LL_DMA_DisableIT_TE(DMAx, Stream);
 
 }
 
@@ -175,8 +179,10 @@ void LL_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stre
  * @Function_Brief  : Stop func. Uart Rx LL
  ******************************************************************************/
 
-void LL_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream) {
+void Low_Level_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream) {
 
+	LL_DMA_DisableIT_TC(DMAx, Stream);
+	LL_DMA_DisableIT_TE(DMAx, Stream);
 	LL_USART_DisableDMAReq_TX(USARTx);
 	LL_DMA_DisableStream(DMAx, Stream);
 
@@ -190,7 +196,7 @@ void LL_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stre
  * @Function_Brief  : DMA RX Interrupt func.
  ******************************************************************************/
 
-void LL_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx){
+void Low_Level_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx){
 
 	if(LL_DMA_IsActiveFlag_TC5(DMAx)){ // User should change LL_DMA_IsActiveFlag_TCx with the correct stream.
 
@@ -214,7 +220,7 @@ void LL_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx){
  * @Function_Brief  : DMA TX Interrupt func.
  ******************************************************************************/
 
-void LL_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx){
+void Low_Level_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx){
 
 	if(LL_DMA_IsActiveFlag_TC6(DMAx)){ // The user should change LL_DMA_IsActiveFlag_TCx with the correct stream.
 
@@ -242,7 +248,7 @@ void LL_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx){
  * @Function_Brief  : IDLE Interrupt func.
  ******************************************************************************/
 
-void LL_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream,
+void Low_Level_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream,
 		uint8_t Recieved_Data[], uint8_t Rx_Buffer[]){
 
 	if(LL_USART_IsActiveFlag_IDLE(USARTx))
@@ -258,13 +264,17 @@ void LL_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uin
 
 
 		if(Pos == Old_Pos) { // Data Size = Rx_Buffer_Size
+			uint8_t a = 0;
+			for(uint8_t i=Pos; i<Rx_Buffer_Size; i++){
 
-			for(uint8_t i=0; i<Rx_Buffer_Size; i++){
-
-				Recieved_Data[i] = Rx_Buffer[i];
-
+				Recieved_Data[a] = Rx_Buffer[i];
+				a++;
 			}
 
+			for(uint8_t i = 0; i<Old_Pos; i++){
+				Recieved_Data[a] = Rx_Buffer[i];
+				a++;
+			}
 		}
 
 		else if (Pos != Old_Pos){
