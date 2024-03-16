@@ -50,7 +50,7 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 		3. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
 		4. Recieved_Data[]		>Veri Kaydedilecek Buffer 	Örnek: Recieved_Data[]
 		5. Rx_Buffer[]			>DMA'dan direkt olarak  	Örnek: Recieved_Data[]
-			Veri Kaydedilecek Buffer
+						Veri Kaydedilecek Buffer
 
 6. `void Low_Level_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size)`
 
