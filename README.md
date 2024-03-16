@@ -13,29 +13,29 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 
 		Bu fonksiyon Uart Rx konfigürasyonları için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
-		1. USARTx				>Kullanılan USART kanalı 	Örnek: USART1
-		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
-		3. Periphs				>Kullanılacak Periph		Örnek: LL_AHB1_GRP1_PERIPH_DMA1
-		4. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
-		5. IRQn				>Kullanılan IRQn 		Örnek: DMA1_Stream5_IRQn
-		6. DstAddress[]			>DMA Veri Bufferı		Örnek: Rx_Buffer[]
-		7. Rx_Buffer_Size			>Veri Buffer Büyüklüğü		Örnek: sizeof(Rx_Buffer)
+		1. USARTx			>Kullanılan USART kanalı 	Örnek: USART1
+		2. DMAx			>Kullanılan DMA kanalı 	 	Örnek: DMA1
+		3. Periphs			>Kullanılacak Periph		Örnek: LL_AHB1_GRP1_PERIPH_DMA1
+		4. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
+		5. IRQn			>Kullanılan IRQn 		Örnek: DMA1_Stream5_IRQn
+		6. DstAddress[]		>DMA Veri Bufferı		Örnek: Rx_Buffer[]
+		7. Rx_Buffer_Size		>Veri Buffer Büyüklüğü		Örnek: sizeof(Rx_Buffer)
 
 2. ` void Low_Level_UART_DMA_RX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
 
 		Bu fonksiyon Uart Rx'nin başlatılması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
-		1. USARTx				>Kullanılan USART kanalı 	Örnek: USART1
-		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
-		3. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
+		1. USARTx			>Kullanılan USART kanalı 	Örnek: USART1
+		2. DMAx			>Kullanılan DMA kanalı 	 	Örnek: DMA1
+		3. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
 
 3. `void Low_Level_UART_DMA_RX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
 
 		Bu fonksiyon Uart Rx'nin durdurulması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
-		1. USARTx				>Kullanılan USART kanalı 	Örnek: USART1
-		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
-		3. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
+		1. USARTx			>Kullanılan USART kanalı 	Örnek: USART1
+		2. DMAx			>Kullanılan DMA kanalı 	 	Örnek: DMA1
+		3. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
 
 4. `void Low_Level_UART_DMA_RX_Interrupt(DMA_TypeDef *DMAx);`
 
@@ -45,40 +45,40 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 
 		Bu fonksiyon gelen verileri istenen bir buffera çekilmesini sağlar. UART IDLE kesme fonksiyonunun içerisinde kullanılmalıdır. Girdi olarak aldığı argümanlar:
 
-		1. USARTx				>Kullanılan USART kanalı 	Örnek: USART1
-		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
-		3. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
-		4. Recieved_Data[]			>Veri Kaydedilecek Buffer 	Örnek: Recieved_Data[]
-		5. Rx_Buffer[]				>DMA'dan direkt olarak  	Örnek: Recieved_Data[]
-							Veri Kaydedilecek Buffer
+		1. USARTx			>Kullanılan USART kanalı 	Örnek: USART1
+		2. DMAx			>Kullanılan DMA kanalı 	 	Örnek: DMA1
+		3. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
+		4. Recieved_Data[]		>Veri Kaydedilecek Buffer 	Örnek: Recieved_Data[]
+		5. Rx_Buffer[]			>DMA'dan direkt olarak  	Örnek: Recieved_Data[]
+			Veri Kaydedilecek Buffer
 
 6. `void Low_Level_UART_DMA_TX_Config(USART_TypeDef *USARTx ,DMA_TypeDef *DMAx, uint32_t Periphs, uint32_t Stream, IRQn_Type IRQn, uint8_t SourceAddress[], uint8_t Tx_Buffer_Size)`
 
 		Bu fonksiyon Uart Tx konfigürasyonları için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
-		1. USARTx				>Kullanılan USART kanalı 	Örnek: USART1
-		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
-		3. Periphs				>Kullanılacak Periph		Örnek: LL_AHB1_GRP1_PERIPH_DMA1
-		4. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
-		5. IRQn				>Kullanılan IRQn 		Örnek: DMA1_Stream5_IRQn
-		6. SourceAddress[]			>Yollanacak Veri 		Örnek: Tx_Buffer
-		7. Tx_Buffer_Size			>Veri Buffer Büyüklüğü		Örnek: sizeof(Tx_Buffer)
+		1. USARTx			>Kullanılan USART kanalı 	Örnek: USART1
+		2. DMAx			>Kullanılan DMA kanalı 	 	Örnek: DMA1
+		3. Periphs			>Kullanılacak Periph		Örnek: LL_AHB1_GRP1_PERIPH_DMA1
+		4. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
+		5. IRQn			>Kullanılan IRQn 		Örnek: DMA1_Stream5_IRQn
+		6. SourceAddress[]		>Yollanacak Veri 		Örnek: Tx_Buffer
+		7. Tx_Buffer_Size		>Veri Buffer Büyüklüğü		Örnek: sizeof(Tx_Buffer)
 
 7. ` void Low_Level_UART_DMA_TX_Start(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream); ` 
 
 		Bu fonksiyon Uart Tx'nin başlatılması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
-		1. USARTx				>Kullanılan USART kanalı 	Örnek: USART1
-		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
-		3. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
+		1. USARTx			>Kullanılan USART kanalı 	Örnek: USART1
+		2. DMAx			>Kullanılan DMA kanalı 	 	Örnek: DMA1
+		3. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
 
 8. `void Low_Level_UART_DMA_TX_Stop(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream);`
 
 		Bu fonksiyon Uart Tx'nin durdurulması için kullanılmaktadır. Girdi olarak aldığı argümanlar:
 
-		1. USARTx				>Kullanılan USART kanalı 	Örnek: USART1
-		2. DMAx				>Kullanılan DMA kanalı 	 	Örnek: DMA1
-		3. Stream				>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
+		1. USARTx			>Kullanılan USART kanalı 	Örnek: USART1
+		2. DMAx			>Kullanılan DMA kanalı 	 	Örnek: DMA1
+		3. Stream			>Kullanılan Stream Kanalı	Örnek: LL_DMA_STREAM_5
 
 9. `void Low_Level_UART_DMA_TX_Interrupt(DMA_TypeDef *DMAx);`
 
