@@ -41,7 +41,11 @@ Kullanım kolaylığı açısından bu kod deposunda LL için bir kütüphane ol
 
 		Bu fonksiyon Uart Rx kesmesi içindir. Uart Rx hangi streamde ise o streamin kesme fonksiyonunun içerisinde kullanılmalıdır.
 
+	__DMAx_Streamx_IRQHandler() içerisinde kullanılmalı.__
+
 5. `void Low_Level_UART_DMA_RX_IDLE_Interrupt(USART_TypeDef *USARTx, DMA_TypeDef *DMAx, uint32_t Stream, uint8_t Recieved_Data[], uint8_t Rx_Buffer[])`
+
+	__USARTx_IRQHandler() içerisinde kullanılmalı.__
 
 		Bu fonksiyon gelen verileri istenen bir buffera çekilmesini sağlar. UART IDLE kesme fonksiyonunun içerisinde kullanılmalıdır. Girdi olarak aldığı argümanlar:
 
@@ -122,7 +126,7 @@ STM32CubeIDE programında kullanılacak işlemci ya da kart seçilerek proje olu
 </p>
 
 
-3. `DMA Settings` sekmesinden `ADD` ile Rx ve TX için DMA açılması gerekmektedir. Burada DMA'nın yönü, önceliği ve yayın kanallarının ayarları yapılmaktadır. 
+3. `DMA Settings` sekmesinden `ADD` ile Rx ve TX için DMA açılması gerekmektedir. Burada DMA'nın yönü, önceliği ve yayın kanallarının ayarları yapılmaktadır. UART interruptları açılmalıdır.
 
 <p align="center">
   <img width="644" height="148" src="Images/image-1.png">
